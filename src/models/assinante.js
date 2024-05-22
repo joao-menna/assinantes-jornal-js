@@ -9,6 +9,14 @@ import mysql from 'mysql2/promise'
  */
 
 /**
+ * @typedef AssinanteOpcional
+ * @property {number?} id
+ * @property {string?} cpf
+ * @property {string?} nome
+ * @property {string?} email
+ */
+
+/**
  * @typedef Filter
  * @property {string} key
  * @property {(string|number)} value
@@ -29,7 +37,7 @@ export class AssinanteModel {
    * Funcao para requisitar os dados do banco de dados
    * @param {Filter[]} filters Filtros para a requisicao GET
    */
-  async get(filters) {
+  async getFiltered(filters) {
     let sql = `
       SELECT *
       FROM ${TABLE}
@@ -42,14 +50,26 @@ export class AssinanteModel {
       
       let filterString = []
       for (const filter of filters) {
+        if (!filter.value) {
+          continue
+        }
+
+        if (filter.key === 'id') {
+          filterString.push('id = ?')
+          values.push(filter.value)
+          continue
+        }
+
         if (filter.key === 'cpf') {
           filterString.push('cpf = ?')
           values.push(filter.value)
+          continue
         }
 
         if (filter.key === 'nome') {
           filterString.push('nome = ?')
           values.push(filter.value)
+          continue
         }
 
         if (filter.key === 'email') {

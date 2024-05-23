@@ -1,5 +1,5 @@
-import loadRoutes from './functions/loadRoutes'
-import getServer from './functions/getServer'
+import loadRoutes from './functions/loadRoutes.js'
+import getServer from './functions/getServer.js'
 
 const server = getServer()
 

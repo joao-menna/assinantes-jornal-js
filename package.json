@@ -2,8 +2,11 @@
   "name": "assinantes-jornal",
   "version": "1.0.0",
   "description": "N2 do Camargo, Server-side",
-  "scripts": {},
+  "scripts": {
+    "start": "node src/server.js"
+  },
   "license": "GPL-3.0-only",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",

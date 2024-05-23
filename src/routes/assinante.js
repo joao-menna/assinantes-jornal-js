@@ -4,7 +4,7 @@ import {
   postAssinante,
   putAssinante,
   deleteAssinante
-} from '../controllers/assinante'
+} from '../controllers/assinante.js'
 
 /**
  * Controller dos assinantes

@@ -1,5 +1,5 @@
-import { AssinanteModel } from '../models/assinante'
-import getConnection from '../database'
+import { AssinanteModel } from '../models/assinante.js'
+import getConnection from '../database/index.js'
 import mysql from 'mysql2'
 import e from 'express'
 

@@ -1,4 +1,4 @@
-import assinanteRoutes from '../routes/assinante'
+import assinanteRoutes from '../routes/assinante.js'
 import e from 'express'
 
 /**

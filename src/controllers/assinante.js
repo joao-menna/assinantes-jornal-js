@@ -112,6 +112,48 @@ export async function postAssinante(req, res) {
  * @param {e.Response} res Resposta
  */
 export async function putAssinante(req, res) {
+  const { id: idBody, cpf, nome, email } = req.body
+  const { id } = req.params
+
+  const idInt = parseInt(id)
+
+  if (!cpf || !nome || !email || isNaN(idInt) || idBody !== idInt) {
+    res.status(422).json({
+      success: false,
+      message: 'Body invalido ou IDs não batem',
+      data: {
+        params: {
+          id: 'number'
+        },
+        body: {
+          id: 'number',
+          cpf: 'string',
+          nome: 'string',
+          email: 'string'
+        }
+      }
+    })
+    return
+  }
+
+  const connection = await getConnection()
+  const assinanteModel = new AssinanteModel(connection)
+
+  try {
+    await  assinanteModel.updateOne(idInt, req.body)
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao atualizar assinante',
+      data: err
+    })
+  }
+
+  res.json({
+    success: true,
+    message: 'Atualizado assinante com sucesso',
+    data: req.body
+  })
 }
 
 /**
@@ -120,4 +162,35 @@ export async function putAssinante(req, res) {
  * @param {e.Response} res Resposta
  */
 export async function deleteAssinante(req, res) {
+  const { id } = req.params
+
+  const idInt = parseInt(id)
+  if (isNaN(idInt)) {
+    res.status(400).json({
+      success: false,
+      message: 'ID deve ser um número',
+      data: {}
+    })
+    return
+  }
+
+  const connection = await getConnection()
+  const assinanteModel = new AssinanteModel(connection)
+
+  try {
+    await assinanteModel.deleteOne(idInt)
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro interno ao deletar assinante',
+      data: err
+    })
+    return
+  }
+
+  res.json({
+    success: true,
+    message: 'Deletado assinante com sucesso',
+    data: {}
+  })
 }

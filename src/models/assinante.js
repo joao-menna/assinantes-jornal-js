@@ -36,6 +36,7 @@ export class AssinanteModel {
   /**
    * Funcao para requisitar os dados do banco de dados
    * @param {Filter[]} filters Filtros para a requisicao GET
+   * @returns {Promise<mysql.QueryResult>} Retorno da query
    */
   async getFiltered(filters) {
     let sql = `
@@ -87,6 +88,7 @@ export class AssinanteModel {
   /**
    * Funcao para inserir um assinante no banco de dados
    * @param {Assinante} assinante Assinante para inserir
+   * @returns {Promise<mysql.QueryResult>} Retorno da query
    */
   async insertOne(assinante) {
     const sql = `
@@ -114,6 +116,7 @@ export class AssinanteModel {
    * Funcao para alterar um assinante no banco de dados
    * @param {number} id ID do assinante para alterar
    * @param {Assinante} assinante Propriedades do assinante para alterar
+   * @returns {Promise<mysql.QueryResult>} Retorno da query
    */
   async updateOne(id, assinante) {
     const sql = `
@@ -138,6 +141,7 @@ export class AssinanteModel {
   /**
    * Funcao para deletar um assinante no banco de dados
    * @param {number} id ID do assinante para deletar
+   * @returns {Promise<mysql.QueryResult>} Retorno da query
    */
   async deleteOne(id) {
     const sql = `

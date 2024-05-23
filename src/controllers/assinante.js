@@ -62,6 +62,48 @@ export async function getAssinante(req, res) {
  * @param {e.Response} res Resposta
  */
 export async function postAssinante(req, res) {
+  const { cpf, nome, email } = req.body
+
+  if (!cpf || !nome || !email) {
+    res.status(422).json({
+      success: false,
+      message: 'Body invalido',
+      data: {
+        body: {
+          cpf: 'string',
+          nome: 'string',
+          email: 'string'
+        }
+      }
+    })
+    return
+  }
+
+  const connection = await getConnection()
+  const assinanteModel = new AssinanteModel(connection)
+
+  let id = 0
+  try {
+    const [result] = await assinanteModel.insertOne(req.body)
+
+    id = result.insertId
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao inserir assinante',
+      data: err
+    })
+    return
+  }
+
+  res.json({
+    success: true,
+    message: 'Inserido assinante com sucesso',
+    data: {
+      id,
+      ...req.body
+    }
+  })
 }
 
 /**

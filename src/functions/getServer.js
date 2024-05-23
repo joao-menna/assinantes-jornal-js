@@ -9,7 +9,7 @@ import e from 'express'
 export default function getServer() {
   const server = express()
 
-  server.use(express.json)
+  server.use(express.json())
   server.use(cors({
     origin: '*'
   }))

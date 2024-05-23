@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "AssinantesJornalJS",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

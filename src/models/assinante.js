@@ -46,7 +46,7 @@ export class AssinanteModel {
 
     const values = []
 
-    if (filters.length > 0) {
+    if (filters.filter(f => !!f.value).length > 0) {
       sql += ' WHERE '
       
       let filterString = []

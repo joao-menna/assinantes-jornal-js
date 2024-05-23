@@ -1,0 +1,19 @@
+meta {
+  name: InsertOne
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/assinante
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "cpf": "420.567.389-69",
+    "nome": "Henricardo Maia",
+    "email": "henrique.brabo@gmail.com"
+  }
+}

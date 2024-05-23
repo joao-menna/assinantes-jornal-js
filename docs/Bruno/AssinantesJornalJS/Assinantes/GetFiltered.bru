@@ -1,0 +1,17 @@
+meta {
+  name: GetFiltered
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/assinante?cpf&nome&email
+  body: none
+  auth: none
+}
+
+query {
+  cpf: 
+  nome: 
+  email: 
+}

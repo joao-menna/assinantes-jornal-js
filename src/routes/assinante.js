@@ -1,4 +1,4 @@
-import e from "express";
+import e from 'express'
 import {
   getAssinante,
   postAssinante,
